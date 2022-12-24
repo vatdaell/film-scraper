@@ -9,11 +9,12 @@ import time
 import re
 
 URL = "https://downtowncamera.com/shop/categories/film/160830cc-7790-4399-9330-586545ab3e9b"
+SLEEP_CONSTANT = 1
 
 
-def get_total_pages(soup):
-    e = soup.find_all("div", {"class": "d-pagination"})
-    return re.findall(r'\d+', e[0].text)[1]
+def click_next(driver, className="d-pagination-next"):
+        link = driver.find_element(By.CLASS_NAME, className)
+        link.click()
 
 
 # Instantiate options
@@ -37,14 +38,10 @@ driver.get(URL)
 end = False
 while not end:
     try:
-        link = driver.find_element(By.CLASS_NAME, "d-pagination-next")
-
-        # Scrape here 
-
-        link.click()
-        time.sleep(5)
+        click_next(driver)
+        time.sleep(SLEEP_CONSTANT)
     except NoSuchElementException:
         print("End Reached")
         end = True
 
-time.sleep(2)
+time.sleep(SLEEP_CONSTANT)
