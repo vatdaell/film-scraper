@@ -13,8 +13,8 @@ SLEEP_CONSTANT = 1
 
 
 def click_next(driver, className="d-pagination-next"):
-        link = driver.find_element(By.CLASS_NAME, className)
-        link.click()
+    link = driver.find_element(By.CLASS_NAME, className)
+    link.click()
 
 
 # Instantiate options
